@@ -1,0 +1,281 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="col-md-8 col-md-offset-2">
+        <p></p>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.level_tag }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post" action="{% url 'users:create' %}" class="form-horizontal">
+
+            {% csrf_token %}
+            
+            <input type="hidden" name="next" value="{{ next }}" />
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Login Details</h3>
+                </div>
+            </div>
+            <div class="form-group{% if user_form.username.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Username :</label>
+                <div class="col-md-8">
+                    {{ user_form.username }}
+                    {{ user_form.username.errors.as_text }}
+                </div>
+            </div>
+            <div class="form-group{% if user_form.password.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Password :</label>
+                <div class="col-md-8">
+                    {{ user_form.password }}
+                    {{ user_form.password.errors.as_text }}
+                </div>
+            </div>
+            <div class="form-group{% if user_form.confirm_password.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Confirm Password :</label>
+                <div class="col-md-8">
+                    {{ user_form.confirm_password }}
+                    {{ user_form.confirm_password.errors.as_text }}
+                </div>
+            </div>
+
+            <div class="form-group{% if user_profile_form.role.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Role :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.role }}
+                    {{ user_profile_form.role.errors.as_text }}
+                </div>
+            </div>
+            
+            <p>&nbsp;</p>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Personal Info</h3>
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.first_name.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">First Name :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.first_name }}
+                    {{ user_profile_form.first_name.errors.as_text }}
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.middle_name.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Middle Name :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.middle_name }}
+                    {{ user_profile_form.middle_name.errors.as_text }}
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.last_name.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Last Name :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.last_name }}
+                    {{ user_profile_form.last_name.errors.as_text }}
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.gender.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Gender :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.gender }}
+                    {{ user_profile_form.gender.errors.as_text }}
+                </div>
+            </div>            
+            <div class="form-group{% if user_profile_form.birthdate.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Birth Date :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.birthdate }}
+                    {{ user_profile_form.birthdate.errors.as_text }}
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.civil_status.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Civil Status :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.civil_status }}
+                    {{ user_profile_form.civil_status.errors.as_text }}
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.tel_no.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Telephone No. :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.tel_no }}
+                    {{ user_profile_form.tel_no.errors.as_text }}
+                </div>
+            </div> 
+            <div class="form-group{% if user_profile_form.mobile_no.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Mobile No. :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.mobile_no }}
+                    {{ user_profile_form.mobile_no.errors.as_text }}
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.address.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Address :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.address }}
+                    {{ user_profile_form.address.errors.as_text }}
+                </div>
+            </div> 
+            <div class="form-group{% if user_profile_form.religion.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Religion :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.religion }}
+                    {{ user_profile_form.religion.errors.as_text }}
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.nationality.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Nationality :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.nationality }}
+                    {{ user_profile_form.nationality.errors.as_text }}
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Bank Account</h3>
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.bank_name.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Bank Name :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.bank_name }}
+                    {{ user_profile_form.bank_name.errors.as_text }}
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.bank_no.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Bank Acct. No. :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.bank_no }}
+                    {{ user_profile_form.bank_no.errors.as_text }}
+                </div>
+            </div>
+            
+            <p>&nbsp;</p>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Salary and Allowance</h3>
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.basic_salary.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Basic Salary :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.basic_salary }}
+                    {{ user_profile_form.basic_salary.errors.as_text }}
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.monthly_allowance.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Monthly Allowance :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.monthly_allowance }}
+                    {{ user_profile_form.monthly_allowance.errors.as_text }}
+                </div>
+            </div>
+            
+            <p>&nbsp;</p>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Contributions and Deductions</h3>
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.tin_no.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">TIN No. :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.tin_no }}
+                    {{ user_profile_form.tin_no.errors.as_text }}
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.sss_no.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">SSS No. :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.sss_no }}
+                    {{ user_profile_form.sss_no.errors.as_text }}
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.gsis_no.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">GSIS No. :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.gsis_no }}
+                    {{ user_profile_form.gsis_no.errors.as_text }}
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.pagibig_no.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">PagIbig No. :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.pagibig_no }}
+                    {{ user_profile_form.pagibig_no.errors.as_text }}
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.philhealth_no.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">PhilHealth No. :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.philhealth_no }}
+                    {{ user_profile_form.philhealth_no.errors.as_text }}
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Employment Information</h3>
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.position.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Position :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.position }}
+                    {{ user_profile_form.position.errors.as_text }}
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.department.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Department :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.department }}
+                    {{ user_profile_form.department.errors.as_text }}
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.entry_date.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">Entry Date :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.entry_date }}
+                    {{ user_profile_form.entry_date.errors.as_text }}
+                </div>
+            </div>
+            <div class="form-group{% if user_profile_form.end_date.errors %} has-error{% else %}{% endif %}">
+                <label class="col-md-3 control-label">End Date :</label>
+                <div class="col-md-8">
+                    {{ user_profile_form.end_date }}
+                    {{ user_profile_form.end_date.errors.as_text }}
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+
+            <div class="footer navbar-fixed-bottom">
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="col-md-8 col-md-offset-2 text-right form-tool-controls">
+                            <p></p>
+                            <button type="submit" name="login" class="btn btn-primary">Submit Form</button>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form><!-- /.form-horizontal -->
+
+    </div><!-- /.col-md-8 -->
+{% endblock content %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="col-md-12">
+        <p></p>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Employee List</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Department</th>
+                            <th>Postion</th>
+                            <th>Entry Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for obj in employees %}
+                            <tr>
+                                <td>{{ obj.last_name }}, {{ obj.first_name }}</td>
+                                <td>{{ obj.department }}</td>
+                                <td>{{ obj.position }}</td>
+                                <td>{{ obj.entry_date }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div><!-- /.panel -->
+    </div><!-- /.col-md-12 -->
+{% endblock content %}

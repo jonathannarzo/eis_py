@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="col-md-8 col-md-offset-2">
+        <p></p>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.level_tag }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Create Role</h3>
+            </div>
+            <div class="panel-body">
+
+                <form method="post" action="{% url 'users:roles' %}" class="form-horizontal">
+
+                    {% csrf_token %}
+
+                    <input type="hidden" name="next" value="{{ next }}" />
+                    
+                    <div class="form-group{% if role_form.code.errors %} has-error{% else %}{% endif %}">
+                        <label class="col-md-3 control-label">Code :</label>
+                        <div class="col-md-8">
+                            {{ role_form.code }}
+                            {{ role_form.code.errors.as_text }}
+                        </div>
+                    </div>
+
+                    <div class="form-group{% if role_form.description.errors %} has-error{% else %}{% endif %}">
+                        <label class="col-md-3 control-label">Description :</label>
+                        <div class="col-md-8">
+                            {{ role_form.description }}
+                            {{ role_form.description.errors.as_text }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-8">
+                            <button type="submit" name="login" class="btn btn-primary">Create</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}
